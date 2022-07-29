@@ -3,6 +3,12 @@
   "displayName": "ASUS Aura Sync for VSCode",
   "description": "Adds ASUS Aura RGB integration to VSCode. (Unofficial, Windows Only)",
   "version": "0.0.1",
+  "author": "obfuscatedgenerated",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/obfuscatedgenerated/vscode-aura.git"
+  },
   "engines": {
     "vscode": "^1.69.0"
   },
