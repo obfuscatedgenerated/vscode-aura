@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	vscode.languages.onDidChangeDiagnostics(
-		(e: vscode.DiagnosticChangeEvent) => debounce(() => { updateLight(e); }, 2000)(),
+		(e: vscode.DiagnosticChangeEvent) => debounce(() => { updateLight(e); }, 10000)(),
 		null,
 		context.subscriptions
 	);
