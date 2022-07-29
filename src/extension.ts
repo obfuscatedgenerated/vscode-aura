@@ -71,9 +71,9 @@ const debounce = (fn: Function, ms = 300) => {
 
 async function flash(color: number, times: number) {
 	if (times > 0) {
-		await sleep(100);
+		await sleep(200);
 		aura.set_all_to_color(color);
-		await sleep(100);
+		await sleep(200);
 		aura.set_all_to_color(0);
 		await flash(color, times - 1);
 	} else {
