@@ -1,6 +1,6 @@
 # ASUS Aura Sync for VSCode (vscode-aura)
 
-Adds ASUS Aura RGB integration to VSCode. (Unofficial, Windows Only)
+Adds ASUS Aura RGB integration to VSCode. (Unofficial, Windows x64 Only)
 
 ASUS Trademark is either a US registered trademark or trademark of ASUSTeK Computer Inc. in the United States and/or other countries.
 
