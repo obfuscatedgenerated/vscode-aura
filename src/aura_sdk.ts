@@ -7,13 +7,32 @@ let devices: IAuraDeviceCollection;
 
 let ready = false;
 
+export class AuraNotInitError extends Error { 
+    constructor() {
+        super("Aura SDK is not initialized");
+    }
+};
+export class AuraNotFoundError extends Error { 
+    constructor() {
+        super("Aura SDK not found. Please make sure you have Aura installed and LightingService.exe is running.");
+    }
+};
+
 export let init = (): void => {
     if (ready) {
         console.warn("Aura SDK is already initialized");
         return;
     }
 
-    aura = new winax.Object("aura.sdk.1");
+    try {
+        aura = new winax.Object("aura.sdk.1");
+    } catch (e) {
+        if (e instanceof Error && e.message.includes("Invalid class string")) {
+            throw new AuraNotFoundError();
+        } else {
+            throw e;
+        }
+    }
 
     aura.SwitchMode();
     devices = aura.Enumerate(0);
@@ -22,7 +41,7 @@ export let init = (): void => {
 
 export let get_devices = (): IAuraDeviceCollection | void => {
     if (!ready) {
-        throw new Error("Aura SDK is not initialized");
+        throw new AuraNotInitError();
     }
 
     return devices;
@@ -30,7 +49,7 @@ export let get_devices = (): IAuraDeviceCollection | void => {
 
 export let set_all_to_color = (color: number): void => {
     if (!ready) {
-        throw new Error("Aura SDK is not initialized");
+        throw new AuraNotInitError();
     }
 
     //for (let dev in devices) {
@@ -63,7 +82,7 @@ export let rgb_to_color = (r: number, g: number, b: number): number => {
 
 export let close = (): void => {
     if (!ready) {
-        throw new Error("Aura SDK is not initialized");
+        throw new AuraNotInitError();
     }
 
     aura.ReleaseControl(0);
