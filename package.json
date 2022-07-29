@@ -10,14 +10,18 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:vscode-aura.helloWorld"
+    "*"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vscode-aura.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-aura.testAura",
+        "title": "Test connection to Aura"
+      },
+      {
+        "command": "vscode-aura.closeAura",
+        "title": "Close connection to Aura"
       }
     ]
   },
