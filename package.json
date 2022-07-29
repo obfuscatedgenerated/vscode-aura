@@ -4,6 +4,8 @@
   "description": "Adds ASUS Aura RGB integration to VSCode. (Unofficial, Windows Only)",
   "version": "0.0.1",
   "author": "obfuscatedgenerated",
+  "publisher": "obfuscatedgenerated",
+  "icon": "icon.png",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -38,7 +40,8 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package --target win32-x64"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",
@@ -52,6 +55,7 @@
     "glob": "^8.0.3",
     "mocha": "^10.0.0",
     "typescript": "^4.7.4",
+    "vsce": "^2.10.0",
     "winax": "github:obfuscatedgenerated/node-activex"
   }
 }
