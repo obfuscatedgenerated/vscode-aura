@@ -7,12 +7,12 @@ let devices: IAuraDeviceCollection;
 
 let ready = false;
 
-export class AuraNotInitError extends Error { 
+export class AuraNotInitError extends Error {
     constructor() {
         super("Aura SDK is not initialized");
     }
 };
-export class AuraNotFoundError extends Error { 
+export class AuraNotFoundError extends Error {
     constructor() {
         super("Aura SDK not found. Please make sure you have Aura installed and LightingService.exe is running.");
     }
