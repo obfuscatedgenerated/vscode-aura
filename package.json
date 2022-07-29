@@ -16,7 +16,8 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "onStartupFinished",
+    "onCommand:vscode-aura.testAura"
   ],
   "main": "./out/extension.js",
   "contributes": {
