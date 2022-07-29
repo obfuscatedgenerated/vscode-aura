@@ -1,6 +1,6 @@
-# vscode-aura README
+# ASUS Aura Sync for VSCode (vscode-aura)
 
-This is the README for your extension "vscode-aura". After writing up a brief description, we recommend including the following sections.
+Adds ASUS Aura RGB integration to VSCode. (Unofficial, Windows Only)
 
 ## Features
 
