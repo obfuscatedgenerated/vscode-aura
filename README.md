@@ -21,6 +21,10 @@ This extension controls the RGB lights on your devices to indicate the problems 
 
 See the [CHANGELOG](CHANGELOG.md) for more information.
 
+### 0.0.3
+
+- Edited publish rules and manifest to only allow win32-x64
+
 ### 0.0.2
 
 Uses time based check rather than using diagnostic event.
