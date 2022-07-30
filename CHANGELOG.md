@@ -11,6 +11,12 @@ All notable changes to the "vscode-aura" extension will be documented in this fi
 - Config: toggle - only show problems for current file
 - Config: option - set default light behaviour when no problems
 
+## [0.0.2] - 30/07/2022
+
+### Added
+
+- Uses time based check rather than using diagnostic event, which would cause overlap
+
 ## [0.0.1] - 30/07/2022
 
 ### Added
@@ -20,5 +26,6 @@ All notable changes to the "vscode-aura" extension will be documented in this fi
 - Blink the lights based on error, warning, and info count
 - Setup the extension's branding and README
 
-[Unreleased]: https://github.com/obfuscatedgenerated/vscode-aura/compare/v0.0.1...HEAD
+[Unreleased]: https://github.com/obfuscatedgenerated/vscode-aura/compare/v0.0.2...HEAD
 [0.0.1]: https://github.com/obfuscatedgenerated/vscode-aura/releases/tag/v0.0.1
+[0.0.2]: https://github.com/obfuscatedgenerated/vscode-aura/releases/tag/v0.0.2
