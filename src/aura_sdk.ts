@@ -1,9 +1,9 @@
 const winax = require("winax");
 
-import { IAuraSdk, IAuraDeviceCollection, IAuraDevice, IAuraLight, IAuraKey } from "./types";
+import { IAuraSdk, IAuraSyncDeviceCollection, IAuraSyncDevice, IAuraSyncKeyboard, IAuraRgbLight, IAuraRgbKey } from "./types";
 
 let aura: IAuraSdk;
-let devices: IAuraDeviceCollection;
+let devices: IAuraSyncDeviceCollection;
 
 let ready = false;
 
@@ -39,7 +39,7 @@ export let init = (): void => {
     ready = true;
 };
 
-export let get_devices = (): IAuraDeviceCollection | void => {
+export let get_devices = (): IAuraSyncDeviceCollection | void => {
     if (!ready) {
         throw new AuraNotInitError();
     }
@@ -54,11 +54,12 @@ export let set_all_to_color = (color: number): void => {
 
     //for (let dev in devices) {
     for (let i = 0; i < devices.Count; i++) {
-        let dev: IAuraDevice = devices.Item(i);
-        if (dev.Type === 0x80000 && dev.Keys !== undefined) {
+        let dev: IAuraSyncDevice = devices.Item(i);
+        if (dev.Type === 0x80000) {
+            let kb = dev as IAuraSyncKeyboard;
             //for (let key in dev.Keys) {
-            for (let j = 0; j < dev.Keys.Count; j++) {
-                let key: IAuraKey = dev.Keys.Item(j);
+            for (let j = 0; j < kb.Keys.Count; j++) {
+                let key: IAuraRgbKey = kb.Keys.Item(j);
                 key.Color = color;
             }
         } else {
@@ -68,7 +69,7 @@ export let set_all_to_color = (color: number): void => {
                 continue;
             }
             for (let j = 0; j < dev.Lights.Count; j++) {
-                let light: IAuraLight = dev.Lights.Item(j);
+                let light: IAuraRgbLight = dev.Lights.Item(j);
                 light.Color = color;
             }
             dev.Apply();

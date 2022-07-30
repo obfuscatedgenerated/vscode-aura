@@ -1,6 +1,6 @@
 export interface IAuraSdk {
     SwitchMode(): void,
-    Enumerate(device_type: number): IAuraDeviceCollection,
+    Enumerate(device_type: number): IAuraSyncDeviceCollection,
     ReleaseControl(reserved: number): void,
 }
 
@@ -10,13 +10,12 @@ export interface IAuraCollection {
     Count: number,
 }
 
-export interface IAuraDeviceCollection extends Omit<IAuraCollection, "Item"> {
-    Item(index: number): IAuraDevice,
+export interface IAuraSyncDeviceCollection extends Omit<IAuraCollection, "Item"> {
+    Item(index: number): IAuraSyncDevice,
 }
 
-export interface IAuraDevice {
-    Lights?: IAuraLightCollection,
-    Keys?: IAuraKeyCollection,
+export interface IAuraSyncDevice {
+    Lights: IAuraRgbLightCollection,
     Type: number,
     Name: string,
     Width: number,
@@ -24,15 +23,20 @@ export interface IAuraDevice {
     Apply(): void,
 }
 
-export interface IAuraLightCollection extends Omit<IAuraCollection, "Item"> {
-    Item(index: number): IAuraLight,
+export interface IAuraSyncKeyboard extends IAuraSyncDevice {
+    Keys: IAuraRgbKeyCollection,
+    Key(): IAuraRgbKey,
 }
 
-export interface IAuraKeyCollection extends Omit<IAuraCollection, "Item"> {
-    Item(index: number): IAuraKey,
+export interface IAuraRgbLightCollection extends Omit<IAuraCollection, "Item"> {
+    Item(index: number): IAuraRgbLight,
 }
 
-export interface IAuraLight {
+export interface IAuraRgbKeyCollection extends Omit<IAuraCollection, "Item"> {
+    Item(index: number): IAuraRgbKey,
+}
+
+export interface IAuraRgbLight {
     Red: number,
     Green: number,
     Blue: number,
@@ -40,7 +44,7 @@ export interface IAuraLight {
     Color: number,
 }
 
-export interface IAuraKey extends IAuraLight {
+export interface IAuraRgbKey extends IAuraRgbLight {
     Code: number,
     X: number,
     Y: number,
