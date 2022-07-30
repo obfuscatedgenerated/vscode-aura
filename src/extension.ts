@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	}
 
-	console.log("Congratulations, your extension \"vscode-aura\" is now active!");
+	console.log("\"vscode-aura\" is now active.");
 
 	aura.set_all_to_color(0);
 
