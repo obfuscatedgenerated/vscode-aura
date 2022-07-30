@@ -1,4 +1,4 @@
-# Change Log
+# Changelog
 
 All notable changes to the "vscode-aura" extension will be documented in this file.
 
@@ -32,6 +32,7 @@ All notable changes to the "vscode-aura" extension will be documented in this fi
 - Blink the lights based on error, warning, and info count
 - Setup the extension's branding and README
 
-[Unreleased]: https://github.com/obfuscatedgenerated/vscode-aura/compare/v0.0.2...HEAD
+[Unreleased]: https://github.com/obfuscatedgenerated/vscode-aura/compare/v0.0.3...HEAD
 [0.0.1]: https://github.com/obfuscatedgenerated/vscode-aura/releases/tag/v0.0.1
 [0.0.2]: https://github.com/obfuscatedgenerated/vscode-aura/releases/tag/v0.0.2
+[0.0.3]: https://github.com/obfuscatedgenerated/vscode-aura/releases/tag/v0.0.3
