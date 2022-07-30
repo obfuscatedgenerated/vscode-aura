@@ -1,5 +1,8 @@
 # ASUS Aura Sync for VSCode (vscode-aura)
 
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/obfuscatedgenerated.vscode-aura) ![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/d/obfuscatedgenerated.vscode-aura?label=installs) ![Visual Studio Marketplace Rating (Stars)](https://img.shields.io/visual-studio-marketplace/stars/obfuscatedgenerated.vscode-aura)](https://marketplace.visualstudio.com/items?itemName=obfuscatedgenerated.vscode-aura)
+
+
 Adds ASUS Aura RGB integration to VSCode. (Unofficial, Windows x64 Only)
 
 ASUS Aura Sync® is either a US registered trademark or trademark of ASUSTeK Computer Inc. in the United States and/or other countries.
