@@ -44,11 +44,12 @@ export function activate(context: vscode.ExtensionContext) {
 		})
 	);
 
-	vscode.languages.onDidChangeDiagnostics(
-		(e: vscode.DiagnosticChangeEvent) => debounce(() => { updateLight(e); }, 10000)(),
-		null,
-		context.subscriptions
-	);
+	//vscode.languages.onDidChangeDiagnostics(
+	//	(e: vscode.DiagnosticChangeEvent) => debounce(() => { updateLight(e); }, 10000)(),
+	//	null,
+	//	context.subscriptions
+	//);
+	intervalUpdate();
 }
 
 export function deactivate() {
@@ -61,13 +62,13 @@ const sleep = (milliseconds: number) => {
 	return new Promise(resolve => setTimeout(resolve, milliseconds))
 };
 
-const debounce = (fn: Function, ms = 300) => {
-	let timeoutId: ReturnType<typeof setTimeout>;
-	return function (this: any, ...args: any[]) {
-		clearTimeout(timeoutId);
-		timeoutId = setTimeout(() => fn.apply(this, args), ms);
-	};
-};
+//const debounce = (fn: Function, ms = 300) => {
+//	let timeoutId: ReturnType<typeof setTimeout>;
+//	return function (this: any, ...args: any[]) {
+//		clearTimeout(timeoutId);
+//		timeoutId = setTimeout(() => fn.apply(this, args), ms);
+//	};
+//};
 
 async function flash(color: number, times: number) {
 	if (times > 0) {
@@ -83,7 +84,16 @@ async function flash(color: number, times: number) {
 
 let last_counts = [0, 0, 0, 0];
 
-async function updateLight(e: vscode.DiagnosticChangeEvent) {
+async function intervalUpdate() {
+	if (connected) {
+		await updateLight();
+		await sleep(3000);
+		intervalUpdate();
+	}
+}
+
+//async function updateLight(e: vscode.DiagnosticChangeEvent) {
+async function updateLight() {	
 	let diag = vscode.languages.getDiagnostics();
 	let errors = 0;
 	let warnings = 0;
