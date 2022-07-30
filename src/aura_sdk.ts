@@ -7,17 +7,51 @@ let devices: IAuraSyncDeviceCollection;
 
 let ready = false;
 
+/**
+ * Error fired when the Aura SDK is not ready.
+ * @date 31/07/2022 - 00:10:01
+ *
+ * @export
+ * @class AuraNotInitError
+ * @typedef {AuraNotInitError}
+ * @extends {Error}
+ */
 export class AuraNotInitError extends Error {
+    /**
+     * Creates an instance of AuraNotInitError.
+     * @date 31/07/2022 - 00:10:01
+     *
+     * @constructor
+     */
     constructor() {
         super("Aura SDK is not initialized");
     }
 };
+/**
+ * Error fired when the Aura SDK isn't available on the device.
+ * @date 31/07/2022 - 00:10:01
+ *
+ * @export
+ * @class AuraNotFoundError
+ * @typedef {AuraNotFoundError}
+ * @extends {Error}
+ */
 export class AuraNotFoundError extends Error {
+    /**
+     * Creates an instance of AuraNotFoundError.
+     * @date 31/07/2022 - 00:10:01
+     *
+     * @constructor
+     */
     constructor() {
         super("Aura SDK not found. Please make sure you have Aura installed and LightingService.exe is running.");
     }
 };
 
+/**
+ * Initializes the Aura SDK.
+ * @date 31/07/2022 - 00:10:01
+ */
 export let init = (): void => {
     if (ready) {
         console.warn("Aura SDK is already initialized");
@@ -39,6 +73,12 @@ export let init = (): void => {
     ready = true;
 };
 
+/**
+ * Lists all Aura devices.
+ * @date 31/07/2022 - 00:10:01
+ *
+ * @returns {(IAuraSyncDeviceCollection | void)}
+ */
 export let get_devices = (): IAuraSyncDeviceCollection | void => {
     if (!ready) {
         throw new AuraNotInitError();
@@ -47,6 +87,12 @@ export let get_devices = (): IAuraSyncDeviceCollection | void => {
     return devices;
 };
 
+/**
+ * Sets all Aura devices to the given (hexadecimal) color.
+ * @date 31/07/2022 - 00:10:01
+ *
+ * @param {number} color
+ */
 export let set_all_to_color = (color: number): void => {
     if (!ready) {
         throw new AuraNotInitError();
@@ -77,10 +123,23 @@ export let set_all_to_color = (color: number): void => {
     }
 };
 
+/**
+ * Converts RGB values to a hexadecimal color number.
+ * @date 31/07/2022 - 00:10:01
+ *
+ * @param {number} r
+ * @param {number} g
+ * @param {number} b
+ * @returns {number}
+ */
 export let rgb_to_color = (r: number, g: number, b: number): number => {
     return b << 16 | g << 8 | r;
 };
 
+/**
+ * Releases control of all Aura devices.
+ * @date 31/07/2022 - 00:10:01
+ */
 export let close = (): void => {
     if (!ready) {
         throw new AuraNotInitError();
