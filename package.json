@@ -2,7 +2,7 @@
   "name": "vscode-aura",
   "displayName": "ASUS Aura Sync for VSCode",
   "description": "Adds ASUS Aura RGB integration to VSCode. (Unofficial, Windows x64 Only)",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "obfuscatedgenerated",
   "publisher": "obfuscatedgenerated",
   "icon": "icon.png",
@@ -34,6 +34,34 @@
       {
         "command": "vscode-aura.closeAura",
         "title": "Close connection to Aura"
+      }
+    ],
+    "configuration":[
+      {
+        "title": "ASUS Aura Sync for VSCode",
+        "properties": {
+          "vscode-aura.colors.info": {
+            "description": "Color shown for info problems",
+            "type": "string",
+            "format": "color-hex",
+            "default": "#1e1eff",
+            "order": 0
+          },
+          "vscode-aura.colors.warning": {
+            "description": "Color shown for warning problems",
+            "type": "string",
+            "format": "color-hex",
+            "default": "#ff8000",
+            "order": 1
+          },
+          "vscode-aura.colors.error": {
+            "description": "Color shown for error problems",
+            "type": "string",
+            "format": "color-hex",
+            "default": "#f00",
+            "order": 2
+          }
+        }
       }
     ]
   },

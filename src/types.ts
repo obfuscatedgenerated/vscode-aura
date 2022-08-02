@@ -1,3 +1,9 @@
+// GENERIC TYPES
+
+
+
+// AURA SDK TYPES
+
 export interface IAuraSdk {
     SwitchMode(): void,
     Enumerate(device_type: number): IAuraSyncDeviceCollection,
@@ -48,4 +54,13 @@ export interface IAuraRgbKey extends IAuraRgbLight {
     Code: number,
     X: number,
     Y: number,
+}
+
+
+// CONFIGURATION TYPES
+
+export interface IColorConfig {
+    info: string,
+    warning: string,
+    error: string,
 }
