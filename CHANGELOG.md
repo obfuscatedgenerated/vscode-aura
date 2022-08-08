@@ -6,14 +6,16 @@ All notable changes to the "vscode-aura" extension will be documented in this fi
 
 ### Planned
 
-- Config: inputs - set timings for each problem type
-- Config: inputs - set minimum thresholds for each problem type and the maximum amount before turning from blinking to solid
 - Config: toggle - only show problems for current file
 - Config: option - set default light behaviour when no problems
 
 ## [0.0.4] - xx/08/2022
 
+### Added
+
 - Config: inputs - set colours for each problem type
+- Config: inputs - set timings for each problem type
+- Config: inputs - set minimum thresholds for each problem type and the maximum amount before turning from blinking to solid
 
 ## [0.0.3] - 30/07/2022
 

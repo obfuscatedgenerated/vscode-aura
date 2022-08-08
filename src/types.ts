@@ -64,3 +64,22 @@ export interface IColorConfig {
     warning: string,
     error: string,
 }
+
+export interface ITimingConfig {
+    updateInterval: number,
+    infoBlink: number,
+    infoHold: number,
+    warningBlink: number,
+    warningHold: number,
+    errorBlink: number,
+    errorHold: number,
+}
+
+export interface IThresholdConfig {
+    infoMinimum: number,
+    infoHigh: number,
+    warningMinimum: number,
+    warningHigh: number,
+    errorMinimum: number,
+    errorHigh: number,
+}
