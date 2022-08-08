@@ -76,7 +76,8 @@ let lastCounts = [0, 0, 0, 0];
 async function intervalUpdate() {
 	if (connected) {
 		let config = vscode.workspace.getConfiguration("vscode-aura");
-		let time = config.get("timings.updateInterval", 3000) as number;
+		let rawTime = config.get("timings.updateInterval", 3000) as any;
+		let time = (typeof rawTime === "number") ? rawTime as number: resetNum(config, "timings", "updateInterval", rawTime) as number;
 
 		await updateLight();
 		await sleep(time);
