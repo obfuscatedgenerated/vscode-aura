@@ -103,37 +103,37 @@
             "default": 2000,
             "order": 9
           },
-          "vscode.thresholds.infoMinimum": {
+          "vscode-aura.thresholds.infoMinimum": {
             "description": "Number of info problems required to start blinking",
             "type": "number",
             "default": 1,
             "order": 10
           },
-          "vscode.thresholds.infoHigh": {
+          "vscode-aura.thresholds.infoHigh": {
             "description": "Number of info problems required to start holding",
             "type": "number",
             "default": 11,
             "order": 11
           },
-          "vscode.thresholds.warningMinimum": {
+          "vscode-aura.thresholds.warningMinimum": {
             "description": "Number of warning problems required to start blinking",
             "type": "number",
             "default": 1,
             "order": 12
           },
-          "vscode.thresholds.warningHigh": {
+          "vscode-aura.thresholds.warningHigh": {
             "description": "Number of warning problems required to start holding",
             "type": "number",
             "default": 11,
             "order": 13
           },
-          "vscode.thresholds.errorMinimum": {
+          "vscode-aura.thresholds.errorMinimum": {
             "description": "Number of error problems required to start blinking",
             "type": "number",
             "default": 1,
             "order": 14
           },
-          "vscode.thresholds.errorHigh": {
+          "vscode-aura.thresholds.errorHigh": {
             "description": "Number of error problems required to start holding",
             "type": "number",
             "default": 11,
