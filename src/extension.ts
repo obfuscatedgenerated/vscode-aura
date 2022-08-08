@@ -53,7 +53,7 @@ export function deactivate() {
 }
 
 const sleep = (milliseconds: number) => {
-	return new Promise(resolve => setTimeout(resolve, milliseconds))
+	return new Promise(resolve => setTimeout(resolve, milliseconds));
 };
 
 async function flash(color: number, times: number, duration: number) {
@@ -66,11 +66,12 @@ async function flash(color: number, times: number, duration: number) {
 
 		await flash(color, times - 1, duration);
 	} else {
+		await sleep(duration);
 		return Promise.resolve();
 	}
 }
 
-let last_counts = [0, 0, 0, 0];
+let lastCounts = [0, 0, 0, 0];
 
 async function intervalUpdate() {
 	if (connected) {
@@ -105,25 +106,25 @@ function resetColor(config: any, k: string, v: string) {
 	vscode.window.showErrorMessage(`Invalid color ${v} for ${k}. Resetting to default...`);
 
 	let def = config.inspect("colors." + k)?.defaultValue as string;
-	let global_v = config.inspect("colors." + k)?.globalValue;
-	let wf_v = config.inspect("colors." + k)?.workspaceFolderValue;
-	let w_v = config.inspect("colors." + k)?.workspaceValue;
+	let globalValue = config.inspect("colors." + k)?.globalValue;
+	let workspaceFolderValue = config.inspect("colors." + k)?.workspaceFolderValue;
+	let workspaceValue = config.inspect("colors." + k)?.workspaceValue;
 
 	if (def) {
-		if (global_v === v) {
+		if (globalValue === v) {
 			config.update("colors." + k, def, vscode.ConfigurationTarget.Global);
-		} else if (wf_v === v) {
+		} else if (workspaceFolderValue === v) {
 			config.update("colors." + k, def, vscode.ConfigurationTarget.WorkspaceFolder);
-		} else if (w_v === v) {
+		} else if (workspaceValue === v) {
 			config.update("colors." + k, def, vscode.ConfigurationTarget.Workspace);
 		}
 		return parseInt(convertForAura(def), 16);
 	} else {
-		if (global_v === v) {
+		if (globalValue === v) {
 			config.update("colors." + k, "#FFFFFF", vscode.ConfigurationTarget.Global);
-		} else if (wf_v === v) {
+		} else if (workspaceFolderValue === v) {
 			config.update("colors." + k, "#FFFFFF", vscode.ConfigurationTarget.WorkspaceFolder);
-		} else if (w_v === v) {
+		} else if (workspaceValue === v) {
 			config.update("colors." + k, "#FFFFFF", vscode.ConfigurationTarget.Workspace);
 		}
 		return parseInt("FFFFFF", 16);
@@ -147,23 +148,66 @@ function parseColors(colors: IColorConfig, config: any) {
 	);
 }
 
+function resetNum(config: any, type: string, k: string, v: any) {
+	vscode.window.showErrorMessage(`Invalid number ${v} for ${k}. Resetting to default...`);
+
+	let def = config.inspect(type + "." + k)?.defaultValue as number;
+	let globalValue = config.inspect(type + "." + k)?.globalValue;
+	let workspaceFolderValue = config.inspect(type + "." + k)?.workspaceFolderValue;
+	let workspaceValue = config.inspect(type + "." + k)?.workspaceValue;
+
+	if (def) {
+		if (globalValue === v) {
+			config.update(type + "." + k, def, vscode.ConfigurationTarget.Global);
+		} else if (workspaceFolderValue === v) {
+			config.update(type + "." + k, def, vscode.ConfigurationTarget.WorkspaceFolder);
+		} else if (workspaceValue === v) {
+			config.update(type + "." + k, def, vscode.ConfigurationTarget.Workspace);
+		}
+		return def;
+	} else {
+		if (globalValue === v) {
+			config.update(type + "." + k, 200, vscode.ConfigurationTarget.Global);
+		} else if (workspaceFolderValue === v) {
+			config.update(type + "." + k, 200, vscode.ConfigurationTarget.WorkspaceFolder);
+		} else if (workspaceValue === v) {
+			config.update(type + "." + k, 200, vscode.ConfigurationTarget.Workspace);
+		}
+		return 200;
+	}
+}
+
+function validateNums(config: any, type: string, values: ITimingConfig | IThresholdConfig) {
+	return Object.fromEntries(
+		Object.entries(values).map(([k, v]) => {
+			let val: number;
+			if (typeof v === "number") {
+				val = v;
+			} else {
+				val = resetNum(config, type, k, v);
+			}
+			return [k as keyof typeof values, val];
+		})
+	);
+}
+
 async function updateLight() {
 	let config = vscode.workspace.getConfiguration("vscode-aura");
 	let diag = vscode.languages.getDiagnostics();
 
 	let colors = config.get("colors") as IColorConfig;
-	let parsed_colors = parseColors(colors, config);
-	let timings = config.get("timings") as ITimingConfig;
-	let thresholds = config.get("thresholds") as IThresholdConfig;
+	let parsedColors = parseColors(colors, config);
+	let timings = validateNums(config, "timings", config.get("timings") as ITimingConfig);
+	let thresholds = validateNums(config, "thresholds", config.get("thresholds") as IThresholdConfig);
 
 	let errors = 0;
 	let warnings = 0;
 	let infos = 0;
 	let other = 0;
 
-	for (let i = 0; i < diag.length; i++) {
+	for (let i in diag) {
 		let notices = diag[i][1];
-		for (let j = 0; j < notices.length; j++) {
+		for (let j in notices) {
 			let notice = notices[j];
 			if (notice.severity === vscode.DiagnosticSeverity.Error) {
 				errors++;
@@ -177,17 +221,17 @@ async function updateLight() {
 		}
 	}
 
-	if ([errors, warnings, infos, other].join() === last_counts.join()) {
+	if ([errors, warnings, infos, other].join() === lastCounts.join()) {
 		return;
 	}
 
-	last_counts = [errors, warnings, infos, other];
+	lastCounts = [errors, warnings, infos, other];
 
 	if (errors >= thresholds.errorMinimum) {
 		if (errors < thresholds.errorHigh) {
-			await flash(parsed_colors.error, errors, timings.errorBlink);
+			await flash(parsedColors.error, errors, timings.errorBlink);
 		} else {
-			aura.set_all_to_color(parsed_colors.error);
+			aura.set_all_to_color(parsedColors.error);
 			await sleep(timings.errorHold);
 			aura.set_all_to_color(0);
 		}
@@ -195,9 +239,9 @@ async function updateLight() {
 
 	if (warnings >= thresholds.warningMinimum) {
 		if (warnings < thresholds.warningHigh) {
-			await flash(parsed_colors.warning, warnings, timings.warningBlink);
+			await flash(parsedColors.warning, warnings, timings.warningBlink);
 		} else {
-			aura.set_all_to_color(parsed_colors.warning);
+			aura.set_all_to_color(parsedColors.warning);
 			await sleep(timings.warningHold);
 			aura.set_all_to_color(0);
 		}
@@ -205,9 +249,9 @@ async function updateLight() {
 
 	if (infos >= thresholds.infoMinimum) {
 		if (infos < thresholds.infoHigh) {
-			await flash(parsed_colors.info, infos, timings.infoBlink);
+			await flash(parsedColors.info, infos, timings.infoBlink);
 		} else {
-			aura.set_all_to_color(parsed_colors.info);
+			aura.set_all_to_color(parsedColors.info);
 			await sleep(timings.infoHold);
 			aura.set_all_to_color(0);
 		}
