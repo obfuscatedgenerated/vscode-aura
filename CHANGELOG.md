@@ -9,7 +9,7 @@ All notable changes to the "vscode-aura" extension will be documented in this fi
 - Config: toggle - only show problems for current file
 - Config: option - set default light behaviour when no problems
 
-## [0.0.4] - xx/08/2022
+## [0.0.4] - 08/08/2022
 
 ### Added
 
