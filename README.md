@@ -24,6 +24,10 @@ This extension controls the RGB lights on your devices to indicate the problems 
 
 See the [CHANGELOG](CHANGELOG.md) for more information.
 
+### 0.0.5
+
+Option to only show problems in visible files.
+
 ### 0.0.4
 
 Light behaviour is now configurable.

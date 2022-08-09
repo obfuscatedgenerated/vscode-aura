@@ -138,6 +138,12 @@
             "type": "number",
             "default": 11,
             "order": 15
+          },
+          "vscode-aura.onlyVisibleFiles": {
+            "description": "Only show problems in visible (current tab) files",
+            "type": "boolean",
+            "default": false,
+            "order": 16
           }
         }
       }

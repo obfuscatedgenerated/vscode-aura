@@ -77,7 +77,7 @@ async function intervalUpdate() {
 	if (connected) {
 		let config = vscode.workspace.getConfiguration("vscode-aura");
 		let rawTime = config.get("timings.updateInterval", 3000) as any;
-		let time = (typeof rawTime === "number") ? rawTime as number: resetNum(config, "timings", "updateInterval", rawTime) as number;
+		let time = (typeof rawTime === "number") ? rawTime as number : resetNum(config, "timings", "updateInterval", rawTime) as number;
 
 		await updateLight();
 		await sleep(time);
@@ -192,9 +192,58 @@ function validateNums(config: any, type: string, values: ITimingConfig | IThresh
 	);
 }
 
+function resetBool(config: any, k: string, v: any) {
+	vscode.window.showErrorMessage(`Invalid boolean ${v} for ${k}. Resetting to default...`);
+
+	let def = config.inspect(k)?.defaultValue as boolean;
+	let globalValue = config.inspect(k)?.globalValue;
+	let workspaceFolderValue = config.inspect(k)?.workspaceFolderValue;
+	let workspaceValue = config.inspect(k)?.workspaceValue;
+
+	if (def) {
+		if (globalValue === v) {
+			config.update(k, def, vscode.ConfigurationTarget.Global);
+		} else if (workspaceFolderValue === v) {
+			config.update(k, def, vscode.ConfigurationTarget.WorkspaceFolder);
+		} else if (workspaceValue === v) {
+			config.update(k, def, vscode.ConfigurationTarget.Workspace);
+		}
+		return def;
+	} else {
+		if (globalValue === v) {
+			config.update(k, false, vscode.ConfigurationTarget.Global);
+		} else if (workspaceFolderValue === v) {
+			config.update(k, false, vscode.ConfigurationTarget.WorkspaceFolder);
+		} else if (workspaceValue === v) {
+			config.update(k, false, vscode.ConfigurationTarget.Workspace);
+		}
+		return false;
+	}
+}
+
+function validateBool(config: any, k: string, v: any) {
+	let val: boolean;
+	if (typeof v === "boolean") {
+		val = v;
+	} else {
+		val = resetBool(config, k, v);
+	}
+	return val;
+}
+
 async function updateLight() {
 	let config = vscode.workspace.getConfiguration("vscode-aura");
 	let diag = vscode.languages.getDiagnostics();
+
+	if (validateBool(config, "onlyVisibleFiles", config.get("onlyVisibleFiles", false))) {
+		diag = diag.filter(([uri, d]) => {
+			if (vscode.window.visibleTextEditors.find(e => e.document.uri === uri) || vscode.window.visibleNotebookEditors.find(e => e.notebook.uri === uri)) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+	}
 
 	let colors = config.get("colors") as IColorConfig;
 	let parsedColors = parseColors(colors, config);
