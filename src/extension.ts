@@ -182,7 +182,7 @@ function validateNums(config: any, type: string, values: ITimingConfig | IThresh
 	return Object.fromEntries(
 		Object.entries(values).map(([k, v]) => {
 			let val: number;
-			if (typeof v === "number") {
+			if (typeof v === "number" && v >= 0) {
 				val = v;
 			} else {
 				val = resetNum(config, type, k, v);
