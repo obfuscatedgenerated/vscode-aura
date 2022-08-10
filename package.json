@@ -2,7 +2,7 @@
   "name": "vscode-aura",
   "displayName": "ASUS Aura Sync for VSCode",
   "description": "Adds ASUS Aura RGB integration to VSCode. (Unofficial, Windows x64 Only)",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "obfuscatedgenerated",
   "publisher": "obfuscatedgenerated",
   "icon": "icon.png",
@@ -64,78 +64,91 @@
           "vscode-aura.timings.updateInterval": {
             "description": "Milliseconds to wait between checking for problems",
             "type": "number",
+            "minimum": 0,
             "default": 3000,
             "order": 3
           },
           "vscode-aura.timings.infoBlink": {
             "description": "Milliseconds between each blink to show info problems",
             "type": "number",
+            "minimum": 0,
             "default": 200,
             "order": 4
           },
           "vscode-aura.timings.infoHold": {
             "description": "Milliseconds to hold to show info problems over the high threshold",
             "type": "number",
+            "minimum": 0,
             "default": 2000,
             "order": 5
           },
           "vscode-aura.timings.warningBlink": {
             "description": "Milliseconds between each blink to show warning problems",
             "type": "number",
+            "minimum": 0,
             "default": 200,
             "order": 6
           },
           "vscode-aura.timings.warningHold": {
             "description": "Milliseconds to hold to show warning problems over the high threshold",
             "type": "number",
+            "minimum": 0,
             "default": 2000,
             "order": 7
           },
           "vscode-aura.timings.errorBlink": {
             "description": "Milliseconds between each blink to show error problems",
             "type": "number",
+            "minimum": 0,
             "default": 200,
             "order": 8
           },
           "vscode-aura.timings.errorHold": {
             "description": "Milliseconds to hold to show error problems over the high threshold",
             "type": "number",
+            "minimum": 0,
             "default": 2000,
             "order": 9
           },
           "vscode-aura.thresholds.infoMinimum": {
             "description": "Number of info problems required to start blinking",
             "type": "number",
+            "minimum": 1,
             "default": 1,
             "order": 10
           },
           "vscode-aura.thresholds.infoHigh": {
             "description": "Number of info problems required to start holding",
             "type": "number",
+            "minimum": 1,
             "default": 11,
             "order": 11
           },
           "vscode-aura.thresholds.warningMinimum": {
             "description": "Number of warning problems required to start blinking",
             "type": "number",
+            "minimum": 1,
             "default": 1,
             "order": 12
           },
           "vscode-aura.thresholds.warningHigh": {
             "description": "Number of warning problems required to start holding",
             "type": "number",
+            "minimum": 1,
             "default": 11,
             "order": 13
           },
           "vscode-aura.thresholds.errorMinimum": {
             "description": "Number of error problems required to start blinking",
             "type": "number",
+            "minimum": 1,
             "default": 1,
             "order": 14
           },
           "vscode-aura.thresholds.errorHigh": {
             "description": "Number of error problems required to start holding",
             "type": "number",
+            "minimum": 1,
             "default": 11,
             "order": 15
           },

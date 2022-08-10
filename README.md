@@ -24,6 +24,10 @@ This extension controls the RGB lights on your devices to indicate the problems 
 
 See the [CHANGELOG](CHANGELOG.md) for more information.
 
+### 0.0.6
+
+No negative numbers in number input fields
+
 ### 0.0.5
 
 Option to only show problems in visible files.

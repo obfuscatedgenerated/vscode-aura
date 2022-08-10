@@ -8,6 +8,12 @@ All notable changes to the "vscode-aura" extension will be documented in this fi
 
 - Config: option - set default light behaviour when no problems
 
+## [0.0.6] - 10/08/2022
+
+### Fixed
+
+- A bug allowing users to enter negative numbers in the number input fields
+
 ## [0.0.5] - 09/08/2022
 
 ### Added
@@ -43,9 +49,10 @@ All notable changes to the "vscode-aura" extension will be documented in this fi
 - Blink the lights based on error, warning, and info count
 - Setup the extension's branding and README
 
-[Unreleased]: https://github.com/obfuscatedgenerated/vscode-aura/compare/v0.0.5...HEAD
+[Unreleased]: https://github.com/obfuscatedgenerated/vscode-aura/compare/v0.0.6...HEAD
 [0.0.1]: https://github.com/obfuscatedgenerated/vscode-aura/releases/tag/v0.0.1
 [0.0.2]: https://github.com/obfuscatedgenerated/vscode-aura/releases/tag/v0.0.2
 [0.0.3]: https://github.com/obfuscatedgenerated/vscode-aura/releases/tag/v0.0.3
 [0.0.4]: https://github.com/obfuscatedgenerated/vscode-aura/releases/tag/v0.0.4
 [0.0.5]: https://github.com/obfuscatedgenerated/vscode-aura/releases/tag/v0.0.5
+[0.0.6]: https://github.com/obfuscatedgenerated/vscode-aura/releases/tag/v0.0.6
