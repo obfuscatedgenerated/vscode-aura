@@ -26,7 +26,7 @@ See the [CHANGELOG](CHANGELOG.md) for more information.
 
 ### 0.0.6
 
-No negative numbers in number input fields
+No negative numbers in number input fields.
 
 ### 0.0.5
 
