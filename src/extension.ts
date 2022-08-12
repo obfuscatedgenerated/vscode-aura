@@ -23,12 +23,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand("vscode-aura.testAura", () => {
+		vscode.commands.registerCommand("vscode-aura.testAura", async () => {
 			if (connected) {
 				aura.set_all_to_color(aura.rgb_to_color(255, 255, 255));
-				setTimeout(() => {
-					aura.set_all_to_color(0);
-				}, 1000);
+				await sleep(1000);
+				aura.set_all_to_color(0);
 				vscode.window.showInformationMessage("Aura is connected!");
 			} else {
 				vscode.window.showInformationMessage("Aura is not connected!");
