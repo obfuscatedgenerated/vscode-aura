@@ -145,6 +145,7 @@ export let close = (): void => {
         throw new AuraNotInitError();
     }
 
-    aura.ReleaseControl(0);
     ready = false;
+    aura.ReleaseControl(0);
+    winax.release(aura);
 };
