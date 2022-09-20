@@ -9,7 +9,7 @@ ASUS Aura Sync® is either a US registered trademark or trademark of ASUSTeK Com
 
 Reference to any ASUS products, services, processes, or other information and/or use of ASUS Trademarks does not constitute or imply endorsement, sponsorship, or recommendation thereof by ASUS.
 
-NOTE: Sometimes, new VSCode versions update Electron. When this happens, I need to manually recompile the native module. If you get an error about the module not being found, please open an issue and I'll get it fixed ASAP. This also drops support for older VSCode versions. If you know of a way I can prebuildify to support all Electron versions, please let me know.
+NOTE: Sometimes, new VSCode versions update Electron. When this happens, I need to manually recompile the native module. If you get an error about the module version not being correct, please open an issue and I'll get it fixed ASAP. This also drops support for older VSCode versions. If you know of a way I can prebuildify to support all Electron versions, please let me know.
 
 ## Features
 
