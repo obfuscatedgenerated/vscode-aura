@@ -8,6 +8,10 @@ All notable changes to the "vscode-aura" extension will be documented in this fi
 
 - Config: option - set default light behaviour when no problems
 
+## [0.0.8] - 20/09/2022
+
+- Update to Electron abi106
+
 ## [0.0.7] - 10/08/2022
 
 ### Added

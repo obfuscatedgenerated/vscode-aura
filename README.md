@@ -9,6 +9,8 @@ ASUS Aura Sync® is either a US registered trademark or trademark of ASUSTeK Com
 
 Reference to any ASUS products, services, processes, or other information and/or use of ASUS Trademarks does not constitute or imply endorsement, sponsorship, or recommendation thereof by ASUS.
 
+NOTE: Sometimes, new VSCode versions update Electron. When this happens, I need to manually recompile the native module. If you get an error about the module not being found, please open an issue and I'll get it fixed ASAP. This also drops support for older VSCode versions. If you know of a way I can prebuildify to support all Electron versions, please let me know.
+
 ## Features
 
 This extension controls the RGB lights on your devices to indicate the problems found in your code.
@@ -177,6 +179,11 @@ This setting determines if the extension will only show problems for the current
 ## Release Notes
 
 See the [CHANGELOG](CHANGELOG.md) for more information.
+
+
+### 0.0.8 Pocket Dimension
+
+Update to Electron abi106.
 
 ### 0.0.7 - "Read all about it"
 
