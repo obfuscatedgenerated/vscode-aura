@@ -181,7 +181,7 @@ This setting determines if the extension will only show problems for the current
 See the [CHANGELOG](CHANGELOG.md) for more information.
 
 
-### 0.0.8 - Pocket Dimension
+### 0.0.8 - "Pocket Dimension"
 
 Update to Electron abi106.
 
